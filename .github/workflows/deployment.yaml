@@ -1,0 +1,34 @@
+name: Test_Project 
+on: [push, workflow_dispatch]
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: get code
+              uses: actions/checkout@v6
+            - name: install npm nodeJs
+              uses: actions/setup-node@v3
+              with:
+                node-version: '20'
+            - name: install dependencies
+              run: npm ci
+            - name: run tests
+              run: npm test
+    
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: get code
+              uses: actions/checkout@v6
+            - name: install npm nodeJs
+              uses: actions/setup-node@v3
+              with:
+                node-version: '20'
+            - name: install dependencies
+              run: npm ci
+            - name: build project
+              run: npm run build
+            - name: deploy to server
+              run: echo "Deploying to server..." 
+            
+
