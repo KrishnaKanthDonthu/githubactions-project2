@@ -13,9 +13,9 @@ jobs:
             - name: install dependencies
               run: npm ci
             - name: run tests
-              run: npm test
-    
+              run: npm test  
     deploy:
+        needs: test
         runs-on: ubuntu-latest
         steps:
             - name: get code
